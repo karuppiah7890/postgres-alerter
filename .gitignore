@@ -1,0 +1,9 @@
+postgres-alerter
+
+*.env*
+
+!.env.sample
+
+*.tar.gz
+
+pgdata
