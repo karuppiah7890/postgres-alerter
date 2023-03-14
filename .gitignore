@@ -7,3 +7,5 @@ postgres-alerter
 *.tar.gz
 
 pgdata
+
+postgres-alerter-state.yaml
