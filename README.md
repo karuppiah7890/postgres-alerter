@@ -14,4 +14,4 @@ make
 ./postgres-alerter
 ```
 
-`postgres-alerter` is just a simple tool and does not run as a service, it just runs once and then exits. to keep it running, run it as a cron job or using `watch` command continuously every few seconds or minutes, whatever interval you wish
+`postgres-alerter` runs as a long running service - it keeps running and does check every 1 second

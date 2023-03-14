@@ -14,12 +14,22 @@ type PostgresStatus struct {
 	Errors []error
 }
 
-func GetPostgresStatus(uri string) PostgresStatus {
-	ctx := context.Background()
+type Client struct {
+	db *bun.DB
+}
+
+func NewClient(uri string) *Client {
 	pgdb := sql.OpenDB(pgdriver.NewConnector(pgdriver.WithDSN(uri)))
 	db := bun.NewDB(pgdb, pgdialect.New())
+	return &Client{
+		db: db,
+	}
+}
 
-	err := db.PingContext(ctx)
+func (c *Client) GetPostgresStatus() PostgresStatus {
+	ctx := context.Background()
+
+	err := c.db.PingContext(ctx)
 	if err != nil {
 		return PostgresStatus{
 			IsUp:   false,
